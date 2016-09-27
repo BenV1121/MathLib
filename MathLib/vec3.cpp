@@ -75,3 +75,8 @@ float magnitude(const vec3 & v)
 {
 	return sqrt(v.x*v.x + v.y*v.y);
 }
+
+vec3 normal(const vec3 & v)
+{
+	return v / magnitude(v);
+}

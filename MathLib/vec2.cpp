@@ -76,3 +76,24 @@ float magnitude(const vec2 & v)
 {
 	return sqrt(v.x*v.x + v.y*v.y);
 }
+
+vec2 normal(const vec2 & v)
+{
+	return v/magnitude(v);
+}
+
+float dot(const vec2 & rhs, const vec2 & lhs)
+{
+	return 0.0f;
+}
+
+float angleBetween(const vec2 & rhs, const vec2 & lhs)
+{
+	return 0.0f;
+}
+
+vec2 perp(const vec2 & v)
+{
+	return vec2();
+}
+
