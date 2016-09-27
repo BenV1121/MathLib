@@ -4,19 +4,23 @@ struct vec2 { float x, y; };
 
 // a + b
 vec2 operator+(const vec2 &lhs, const vec2 &rhs);
-// need subtraction
+vec2 operator-(const vec2 &lhs, const vec2 &rhs);
 
 vec2 operator*(const vec2 &lhs, float rhs);
 vec2 operator*(float rhs, const vec2 &lhs);
-// need division
+vec2 operator/(const vec2 &lhs, float rhs);
+vec2 operator/(float rhs, const vec2 &lhs);
 
 vec2 operator-(const vec2 &v);
+vec2 operator+(const vec2 &v);
 
 vec2 &operator+=(vec2 &lhs, const vec2 &rhs);
-// need -=, /=, *=
+vec2 &operator-=(vec2 &lhs, const vec2 &rhs);
+vec2 &operator/=(vec2 &lhs, const vec2 &rhs);
+vec2 &operator*=(vec2 &lhs, const vec2 &rhs);
 
 bool operator==(const vec2 &lhs, const vec2 &rhs);
-// need !=
+bool operator!=(const vec2 &lhs, const vec2 &rhs);
 
 float magnitude(const vec2 &v);
 
