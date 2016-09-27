@@ -1,5 +1,6 @@
 #include <cmath>
 #include "vec2.h"
+#include "flops.h"
 
 
 vec2 operator+(const vec2 & lhs, const vec2 & rhs)
@@ -64,7 +65,8 @@ vec2 & operator*=(vec2 & lhs, const vec2 & rhs)
 
 bool operator==(const vec2 & lhs, const vec2 & rhs)
 {
-	return lhs.x == rhs.x && lhs.y == rhs.y;
+	return fequals(lhs.x, rhs.x)
+		&& fequals(lhs.y, rhs.y);
 }
 
 bool operator!=(const vec2 & lhs, const vec2 & rhs)
@@ -84,16 +86,26 @@ vec2 normal(const vec2 & v)
 
 float dot(const vec2 & rhs, const vec2 & lhs)
 {
-	return 0.0f;
+	return (lhs.x * rhs.x) + (lhs.y * rhs.y);
 }
 
 float angleBetween(const vec2 & rhs, const vec2 & lhs)
 {
-	return 0.0f;
+	return acos(dot(normal(lhs), normal(rhs)));
 }
 
 vec2 perp(const vec2 & v)
 {
-	return vec2();
+	return {v.y, -v.x};
+}
+
+vec2 angle(const vec2 & v)
+{
+	return {atan2f( v.y, v.x )};
+}
+
+vec2 fromAngle(float a)
+{
+	return vec2{ cos(a), sin(a) };
 }
 

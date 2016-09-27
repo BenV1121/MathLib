@@ -1,5 +1,6 @@
 #include <cmath>
 #include "vec3.h"
+#include "flops.h"
 
 vec3 operator+(const vec3 & lhs, const vec3 & rhs)
 {
@@ -79,4 +80,19 @@ float magnitude(const vec3 & v)
 vec3 normal(const vec3 & v)
 {
 	return v / magnitude(v);
+}
+
+float dot(const vec3 & rhs, const vec3 & lhs)
+{
+	return (lhs.x * rhs.x) + (lhs.y * rhs.y) + (lhs.z * rhs.z);
+}
+
+float angleBetween(const vec3 & rhs, const vec3 & lhs)
+{
+	return acos(dot(normal(lhs), normal(rhs)));
+}
+
+vec3 cross(const vec3 & lhs, const vec3 & rhs)
+{
+	return{ (lhs.y * rhs.z) - (lhs.z * rhs.y), (lhs.z * rhs.x) - (lhs.x * rhs.z), (lhs.x * rhs.y) - (rhs.x * lhs.y) };
 }

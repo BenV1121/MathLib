@@ -33,6 +33,8 @@ vec2 perp(const vec2 &v);
 
 vec2 angle(const vec2 &v);
 
+vec2 fromAngle(float a);
+
 // component-wise
 	// Addition
 	// Subtraction
