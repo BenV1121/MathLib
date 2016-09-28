@@ -33,10 +33,9 @@ int main()
 	assert(fequals(dot(vec2{ 5,4 }, vec2{ 1,0 }), 5));
 	assert(fequals(dot(vec2{ 5,4 }, vec2{ 0,1 }), 4));
 
-	assert(fequals(angleBetween(vec2{ 0,1 }, vec2{ 0,1 }), deg2rad(90)));
+	assert(fequals(angleBetween(vec2{ 0,1 }, vec2{ 1,0 }), deg2rad(90)));
 	assert(fequals(angleBetween(vec2{ 1,1 }, vec2{ 0,1 }), deg2rad(45)));
 	assert(fequals(angleBetween(vec2{ 1,1 }, vec2{ 0,1 }), angle(vec2{ 1,1 })));
-	
 
 	assert((fromAngle(0) == vec2{ 1,0 }));
 	assert((fromAngle(deg2rad(90)) == vec2{ 0,1 }));

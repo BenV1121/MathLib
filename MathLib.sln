@@ -10,6 +10,12 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MathTest", "MathTest\MathTe
 		{07C9D98D-64A0-48AF-B277-B5EEF3D0C2BD} = {07C9D98D-64A0-48AF-B277-B5EEF3D0C2BD}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Components", "Components\Components.vcxproj", "{DED27CD4-534D-46DC-9BC9-DA73E31459C0}"
+	ProjectSection(ProjectDependencies) = postProject
+		{24FCD58B-CE8C-49EE-93F1-0C5DC3532340} = {24FCD58B-CE8C-49EE-93F1-0C5DC3532340}
+		{07C9D98D-64A0-48AF-B277-B5EEF3D0C2BD} = {07C9D98D-64A0-48AF-B277-B5EEF3D0C2BD}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -34,6 +40,14 @@ Global
 		{24FCD58B-CE8C-49EE-93F1-0C5DC3532340}.Release|x64.Build.0 = Release|x64
 		{24FCD58B-CE8C-49EE-93F1-0C5DC3532340}.Release|x86.ActiveCfg = Release|Win32
 		{24FCD58B-CE8C-49EE-93F1-0C5DC3532340}.Release|x86.Build.0 = Release|Win32
+		{DED27CD4-534D-46DC-9BC9-DA73E31459C0}.Debug|x64.ActiveCfg = Debug|x64
+		{DED27CD4-534D-46DC-9BC9-DA73E31459C0}.Debug|x64.Build.0 = Debug|x64
+		{DED27CD4-534D-46DC-9BC9-DA73E31459C0}.Debug|x86.ActiveCfg = Debug|Win32
+		{DED27CD4-534D-46DC-9BC9-DA73E31459C0}.Debug|x86.Build.0 = Debug|Win32
+		{DED27CD4-534D-46DC-9BC9-DA73E31459C0}.Release|x64.ActiveCfg = Release|x64
+		{DED27CD4-534D-46DC-9BC9-DA73E31459C0}.Release|x64.Build.0 = Release|x64
+		{DED27CD4-534D-46DC-9BC9-DA73E31459C0}.Release|x86.ActiveCfg = Release|Win32
+		{DED27CD4-534D-46DC-9BC9-DA73E31459C0}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

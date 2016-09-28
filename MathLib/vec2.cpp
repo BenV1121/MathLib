@@ -99,9 +99,9 @@ vec2 perp(const vec2 & v)
 	return {v.y, -v.x};
 }
 
-vec2 angle(const vec2 & v)
+float angle(const vec2 & v)
 {
-	return {atan2f( v.y, v.x )};
+	return atan2f( v.y, v.x );
 }
 
 vec2 fromAngle(float a)
