@@ -2,12 +2,15 @@
 #include "vec2.h"
 #include "flops.h"
 #include "Transform.h"
+#include <cmath>
 
 using namespace sfw;
 
 void main()
 {
-	initContext();
+	float W = 800, H = 800;
+	initContext(W, H);
+	/*
 	Transform trans(400, 300);
 
 	// Different Constructor Syntaxes:
@@ -27,9 +30,10 @@ void main()
 
 	vec2 basis = { 120,0 };
 	float ang_vec = 0;
-
+	*/
 	while (stepContext())
 	{
+		/*
 		ang_vec += getDeltaTime();
 		vec2 incident = fromAngle(ang_vec) * 120;
 		float proj = dot(basis, normal(incident));
@@ -43,6 +47,26 @@ void main()
 		drawLine(400, 300, 400 + proj, 300, GREEN);
 
 		trans.update();
+		*/
+
+		float steps = 100;
+		//i is the number of lines we draw.
+		for (int i = 0; i < steps; ++i)
+		{
+			float x1 = i / steps;
+			float x2 = (i + 1) / steps;
+			float y1 = quadBezier(.5f, -1.f, 0, x1);
+			float y2 = quadBezier(.5f, -1.f, 0, x2);
+
+			x1 *= W;
+			x2 *= W;
+
+			y1 *= H;
+			y2 *= H;
+
+			drawLine(x1, y1, x2, y2);
+
+		}
 	}
 	
 	termContext();
