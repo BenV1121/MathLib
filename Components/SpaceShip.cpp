@@ -1,5 +1,6 @@
 #include "SpaceShip.h"
 #include "sfwdraw.h"
+#include "Rigidbody.h"
 
 using namespace::sfw;
 
@@ -7,29 +8,45 @@ SpaceShip::SpaceShip()
 {
 	vertThrust = 0.0f;
 	horzThrust = 0.0f;
+	stopAction = 0;
 
-	speed = 10.0f;
+	breakPower = 1;
+	turnSpeed = 1;
+	speed = 100.0f;
 	maxSpeed = 1000.0f;
 }
 
 void SpaceShip::doThrust(float value)
 {
-	vertThrust = value;
+	vertThrust += value;
 	//if (getKey('W')) vertThrust += 1;
 	//if (getKey('S')) vertThrust -= 1;
 }
 
 void SpaceShip::doTurn(float value)
 {
-	horzThrust = value;
+	horzThrust += value;
 	//if (sfw::getKey('Q')) horzThrust += 1;
 	//if (sfw::getKey('E')) horzThrust -= 1;
 }
 
-void SpaceShip::update(Rigidbody &rigidbody, float deltaTime)
+void SpaceShip::doStop(float value)
+{
+	stopAction = value;
+}
+
+void SpaceShip::update(const Transform &trans, Rigidbody &rigidbody)
 {
 	//doThrust(float value);
 	//doTurn(float value);
+
+	rigidbody.addForce(trans.getDirection() * speed * vertThrust);
+	rigidbody.addTorque(turnSpeed * horzThrust);
+
+	rigidbody.addForce(-rigidbody.velocity * breakPower * stopAction);
+	horzThrust = vertThrust = stopAction = 0;
+	/*
+	horzThrust = vertThrust = 0;
 
 	rigidbody.velocity.x = horzThrust * speed;
 	rigidbody.velocity.y = vertThrust * speed;
@@ -43,5 +60,6 @@ void SpaceShip::update(Rigidbody &rigidbody, float deltaTime)
 
 	vertThrust = 0.0f;
 	horzThrust = 0.0f;
+	*/
 }
 

@@ -12,7 +12,7 @@ using namespace sfw;
 void main()
 {
 
-	float W = 400, H = 400;
+	float W = 800, H = 800;
 	initContext(W, H);
 	float steps = -100;
 
@@ -21,11 +21,11 @@ void main()
 		   mid = { 0,  1100 };
 
 	Transform playerTransform(200, 200);
-
 	Rigidbody playerRigidbody;
-
 	SpaceshipController playerCtrl;
 	SpaceShip playerShip;
+
+	playerTransform.scale = { 24, 24 };
 	
 
 	while (stepContext())
@@ -44,12 +44,10 @@ void main()
 			playerTransform.position.y = H;
 
 		playerCtrl.update(playerShip);
-		playerShip.update(playerRigidbody, deltaTime);
+		playerShip.update(playerTransform, playerRigidbody);
 		playerRigidbody.integrate(playerTransform, deltaTime);
 
 		playerTransform.debugDraw();
-
 	}
-	
 	termContext();
 }

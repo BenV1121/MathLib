@@ -14,7 +14,8 @@ public:
 
 	void func(float param1 = 0.0f, float param2 = 0.0f);
 
-	vec2 getDirection();
+	vec2 getUp() const;
+	vec2 getDirection()const;
 	void setDirection(const vec2 &dir);
 
 	void debugDraw();
