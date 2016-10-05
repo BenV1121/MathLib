@@ -26,10 +26,13 @@ void Transform::setDirection(const vec2 & dir)
 
 void Transform::debugDraw()
 {
-	drawCircle(position.x, position.y, 48);
+	drawCircle(position.x, position.y, 24);
 
 	vec2 dirEnd = position + getDirection() * scale.x;
 	vec2 upEnd  = position + perp(getDirection()) * scale.y;
+
+	drawLine(position.x, position.y, dirEnd.x, dirEnd.y, RED);
+	drawLine(position.x, position.y, upEnd.x, upEnd.y, GREEN);
 }
 
 void Transform::update()
