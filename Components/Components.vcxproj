@@ -125,7 +125,6 @@
     <ClCompile Include="Transform.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="mat2.h" />
     <ClInclude Include="Rigidbody.h" />
     <ClInclude Include="SpaceShip.h" />
     <ClInclude Include="SpaceshipController.h" />
