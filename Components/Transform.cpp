@@ -1,17 +1,18 @@
 #include "Transform.h"
 #include "sfwdraw.h"
+#include "ShapeDraw.h"
 
-using namespace sfw;
-
-Transform::Transform() : facing(0), position({0,0}), scale({28,8}) // member initialization
+Transform::Transform(float x, float y, float w, float h, float a)
 {
+	m_position.x = x;
+	m_position.y = y;
 
-}
+	m_scale.x = w;
+	m_scale.y = h;
 
-Transform::Transform(float x, float y) : Transform() // ctor chaining
-{
-	position.x = x;
-	position.y = y;
+	m_facing = a;
+
+	m_parent = nullptr;
 }
 
 vec2 Transform::getUp() const
@@ -19,63 +20,81 @@ vec2 Transform::getUp() const
 	return -perp(getDirection());
 }
 
-vec2 Transform::getDirection()const
+
+vec2 Transform::getDirection() const
 {
-	return fromAngle(facing);
+	return fromAngle(m_facing);
 }
 
-void Transform::setDirection(const vec2 & dir)
+
+void Transform::setDirection(const vec2 &dir)
 {
-	facing = angle(dir);
+	m_facing = angle(dir);
 }
 
-void Transform::debugDraw()
+vec2 Transform::getGlobalPosition() const
 {
-	drawCircle(position.x, position.y, 24);
-
-	vec2 dirEnd = position + getDirection() * scale.x;
-	vec2 upEnd  = position + perp(getDirection()) * scale.y;
-
-	drawLine(position.x, position.y, dirEnd.x, dirEnd.y, RED);
-	drawLine(position.x, position.y, upEnd.x, upEnd.y, GREEN);
+	return getGlobalTransform()[2].xy;
 }
 
-void Transform::update()
+vec2 Transform::getGlobalRight() const
 {
-	if (getKey(KEY_LEFT))
-	{
-		position.x -= getDeltaTime() * 200;
-	}
-	if (getKey(KEY_RIGHT))
-	{
-		position.x += getDeltaTime() * 200;
-	}
-	if (getKey(KEY_DOWN))
-	{
-		position.y -= getDeltaTime() * 200;
-	}
-	if (getKey(KEY_UP))
-	{
-		position.y += getDeltaTime() * 200;
-	}
+	return getGlobalTransform()[0].xy;
+}
 
-	if (position.y <0)
-	{
-		position.y = 600;
-	}
+vec2 Transform::getGlobalUp() const
+{
+	return getGlobalTransform()[1].xy;
+}
 
-	if (position.y > 600)
-	{
-		position.y = -0;
-	}
+float Transform::getGlobalAngle() const
+{
+	return angle(getGlobalRight());
+}
 
-	if (position.x <0)
-	{
-		position.x = 800;
-	}
 
-	if (position.x > 800)
-	{
-		position.x = -0;
-	}
+/*
+This function gets our global transform!
+*/
+mat3 Transform::getGlobalTransform() const
+{
+	if (m_parent == nullptr)
+		return getLocalTransform();
+	else
+		return m_parent->getGlobalTransform() * getLocalTransform();
+}
+
+
+
+mat3 Transform::getLocalTransform() const
+{
+	mat3 T = translate(m_position.x, m_position.y);
+	mat3 S = scale(m_scale.x, m_scale.y);
+	mat3 R = rotation(m_facing);
+
+	return T * R * S;
+}
+
+void Transform::debugDraw(const mat3 &T) const
+{
+	// Use global transform for stuff now!
+	mat3 L = T * getGlobalTransform();
+
+	vec3 pos = L[2];
+
+	vec3 right = L * vec3{ 10, 0, 1 };
+	vec3 up = L * vec3{ 0, 10, 1 };
+
+	sfw::drawLine(pos.x, pos.y, right.x, right.y, RED);
+	sfw::drawLine(pos.x, pos.y, up.x, up.y, GREEN);
+
+	// Draw line to parent if possible.
+	vec3 sgp = m_parent ? T * m_parent->getGlobalTransform()[2] : pos;
+	sfw::drawLine(sgp.x, sgp.y, pos.x, pos.y, BLUE);
+
+	drawCircle(L * Circle{ 0, 0, 12 }, 0x888888FF);
+
+	drawAABB(L * AABB{ 0,0,10,10 }, 0x888888FF);
+
+	//sfw::drawCircle(pos.x, pos.y, 12, 12, 0x888888FF);
 }

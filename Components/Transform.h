@@ -1,23 +1,32 @@
 #pragma once
 
 #include "vec2.h"
+#include "mat3.h"
 
 class Transform
 {
 public:
-	Transform();
-	Transform(float x, float y);
+	vec2  m_position;
+	vec2  m_scale;
+	float m_facing;
 
-	vec2 position;
-	vec2 scale;
-	float facing;
+	// pointer definition
+	Transform *m_parent;
 
-	void func(float param1 = 0.0f, float param2 = 0.0f);
+	Transform(float x = 0, float y = 0, float w = 1, float h = 1, float a = 0);
 
 	vec2 getUp() const;
-	vec2 getDirection()const;
+	vec2 getDirection() const;
 	void setDirection(const vec2 &dir);
 
-	void debugDraw();
-	void update();
+	// Useful to access global data directly.
+	vec2 getGlobalPosition() const;
+	vec2 getGlobalRight()    const;
+	vec2 getGlobalUp()       const;
+	float getGlobalAngle()   const;
+
+	mat3 getGlobalTransform() const;
+	mat3 getLocalTransform() const;
+
+	void debugDraw(const mat3 &T = mat3Identity()) const;
 };

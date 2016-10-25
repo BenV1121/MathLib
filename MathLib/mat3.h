@@ -1,5 +1,6 @@
 #pragma once
 #include "vec3.h"
+#include "vec2.h"
 
 // m[0] == mm[0][0]
 // m[1] == mm[0][1]
@@ -29,10 +30,15 @@ mat3 operator-(const mat3 &A);
 mat3 operator*(const mat3 &A, float s);
 mat3 operator*(float s, const mat3 &A);
 mat3 operator*(const mat3 &A, const mat3 &B);
-mat3 operator-(const mat3 &A, const vec3 &V);
+vec3 operator*(const mat3 &A, const vec3 &V);
 
 float determinant(const mat3 &A);
 mat3 inverse(const mat3 &A);
+
+// In a 2D space
+mat3 scale(float w, float h);
+mat3 translate(float x, float y);
+mat3 rotation(float a);
 
 // mat2[unsigned]	: subscr
 // mat2 == mat2		: equivalence!

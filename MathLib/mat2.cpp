@@ -35,7 +35,7 @@ mat2 operator*(const mat2 & A, float s)
 
 mat2 operator*(float s, const mat2 & A)
 {
-	return mat2();
+	return s * A;
 }
 
 mat2 operator*(const mat2 & A, const mat2 & B)
@@ -45,34 +45,37 @@ mat2 operator*(const mat2 & A, const mat2 & B)
 
 	for (int i = 0; i < 2; ++i)
 		for (int j = 0; j < 2; ++j)
-			retval[j][i] = dot(At[i], B[j]);
+			retval.mm[j][i] = dot(At.c[i], B.c[j]);
 
-	return retval[0][0] = dot(At[0], B[0]);
-}
-
-mat2 operator-(const mat2 & A, const vec2 & V)
-{
-	return mat2();
-}
-
-float determinant(const mat2 & A)
-{
-	return 0.0f;
-}
-
-mat2 inverse(const mat2 & A)
-{
-	return mat2();
+	return retval;
 }
 
 vec2 operator*(const mat2 & A, const vec2 & V)
 {
-	vec2 r;
+	mat2 At = transpose(A);
+	vec2 retval;
 
-	r.x = A[0][0] * V.x + A[0][1] * V.x;
-	r.y = A[1][0] * V.x + A[1][1] * V.y;
+	retval[0] = dot(At.c[0], V);
+	retval[1] = dot(At.c[1], V);
 
-	return r;
+	return retval;
+}
+
+float determinant(const mat2 & A)
+{
+	return (A.mm[0][0] * A.mm[1][1]) - (A.mm[0][1] * A.mm[1][0]);
+}
+
+mat2 inverse(const mat2 & A)
+{
+	mat2 retval = A;
+
+	retval.m[0] = A.m[0] * A.m[0] + A.m[1];
+	retval.m[1] = A.m[1] * A.m[0] + A.m[2];
+
+	mat2 At = transpose(A);
+
+	return retval;
 }
 
 mat2 mat2Identity()

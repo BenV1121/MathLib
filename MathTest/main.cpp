@@ -1,11 +1,13 @@
 #include <cassert>
 #include <cstdio>
+#include <cmath>
 
 #include "Test.h"
 #include "vec2.h"
 #include "vec3.h"
 #include "flops.h"
 #include "mat2.h"
+
 
 int main()
 {
@@ -47,6 +49,8 @@ int main()
 
 	mat2 m0 = mat2{ 0,0,0,0 };
 	mat2 mI = mat2Identity();
+	mat2 t0 = mat2{ 4,3,0,1 };
+	vec2 v0 = vec2{ 1,0 };
 
 	assert(m0 == m0);
 	assert(mI * 2 == 2 * mI);
@@ -56,12 +60,19 @@ int main()
 	assert(mI *-1 == -mI);
 
 	assert(mI * mI == mI);
-	assert((mat2{ 1,2,3,4 }) * mI-- (mat2{ 1,2,3,4 }));
 
 	assert(transpose(mI) == mI);
 	assert(inverse(mI) == mI);
 
-	assert(t0*inverse(t0) == mI);
+	/*
+	vec3 test
+		= m_rotate(deg2rad(-90)) * m_translate(10, 0) *
+		  m_rotate(deg2rad(45))  * m_translate(4, 0) *
+		  m_rotate(deg2rad(45))  * m_translate(-6, 0) *
+		  m_translate(6, 4)	   * vec3 { 0, 0, 1 };
+
+	assert((test == vec3{ 2 * sqrtf(2), -6 - 2 * sqrtf(2), 1 }));
+	*/
 
 	return 0;
 }

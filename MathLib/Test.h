@@ -17,7 +17,7 @@ struct quad_results
 quad_results quad(float a, float b, float c);
 
 // Problem c
-float lerp(float start, float end, float t);
+//float lerp(float start, float end, float t);
 
 // Problem d
 struct Point { float x, y; };
@@ -30,14 +30,14 @@ float inner(float x1, float y1, float z1,
 	float x2, float y2, float z2);
 
 struct Plane { Point3D abc; float d; };
-float point_plane_distance(const Plane &pl, const Point3D &pt)
+inline float point_plane_distance(const Plane &pl, const Point3D &pt)
 {
-	(inner(pl.abc, pt) + pl.d) / sqrt(pl.abc.x * pl.abc.x
+	return (inner(pl.abc, pt) + pl.d) / sqrt(pl.abc.x * pl.abc.x
 									+ pl.abc.y * pl.abc.y
 									+ pl.abc.z * pl.abc.z);
 }
 
-Point3D bezier(float t,
+inline Point3D bezier(float t,
 	const Point3D &p1,
 	const Point3D &p2,
 	const Point3D &p3,
@@ -47,9 +47,9 @@ Point3D bezier(float t,
 
 	Point3D r;
 
-	ot*ot*ot*p1.x + 3 * ot*ot*t*p2.x + 3 * ot*t*t*p3.x + t*t*t*p4.x;
-	ot*ot*ot*p1.y + 3 * ot*ot*t*p2.y + 3 * ot*t*t*p3.y + t*t*t*p4.y;
-	ot*ot*ot*p1.z + 3 * ot*ot*t*p2.z + 3 * ot*t*t*p3.z + t*t*t*p4.z;
+	r.x = ot*ot*ot*p1.x + 3 * ot*ot*t*p2.x + 3 * ot*t*t*p3.x + t*t*t*p4.x;
+	r.y = ot*ot*ot*p1.y + 3 * ot*ot*t*p2.y + 3 * ot*t*t*p3.y + t*t*t*p4.y;
+	r.z = ot*ot*ot*p1.z + 3 * ot*ot*t*p2.z + 3 * ot*t*t*p3.z + t*t*t*p4.z;
 	// A^3 + 3A^2B + 3AB^2 + B^3
 
 	return r;

@@ -1,5 +1,21 @@
 #pragma once
-struct vec3 { float x, y, z; };
+#include "vec2.h"
+
+union vec3
+{
+	float v[3];
+
+	struct // untagged
+	{
+		float x, y, z;
+		
+	};
+
+	vec2 xy;
+
+	float  operator[](unsigned idx) const;
+	float &operator[](unsigned idx);
+};
 
 // a + b
 vec3 operator+(const vec3 &lhs, const vec3 &rhs);
