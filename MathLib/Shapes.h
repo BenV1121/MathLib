@@ -37,7 +37,7 @@ struct Hull
 
 };
 
-AABB   operator*(const mat3 &T, const AABB   & A);
-Plane  operator*(const mat3 &T, const Plane  & P);
-Ray    operator*(const mat3 &T, const Ray	 & R);
-Hull   operator*(const mat3 &T, const Hull   & H);
+AABB   operator*(const mat3 &T, const AABB   & Box);
+Plane  operator*(const mat3 &T, const Plane  &   P);
+Ray    operator*(const mat3 &T, const Ray	 &   R);
+Hull   operator*(const mat3 &T, const Hull   &   H);

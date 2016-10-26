@@ -123,7 +123,6 @@
     <ClCompile Include="PlanetaryRenderer.cpp" />
     <ClCompile Include="Rigidbody.cpp" />
     <ClCompile Include="ShapeDraw.cpp" />
-    <ClCompile Include="Shapes.cpp" />
     <ClCompile Include="SpaceShip.cpp" />
     <ClCompile Include="SpaceshipController.cpp" />
     <ClCompile Include="SpaceshipRenderer.cpp" />
@@ -134,7 +133,6 @@
     <ClInclude Include="PlanetaryRenderer.h" />
     <ClInclude Include="Rigidbody.h" />
     <ClInclude Include="ShapeDraw.h" />
-    <ClInclude Include="Shapes.h" />
     <ClInclude Include="SpaceShip.h" />
     <ClInclude Include="SpaceshipController.h" />
     <ClInclude Include="SpaceshipRenderer.h" />

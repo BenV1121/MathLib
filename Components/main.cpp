@@ -10,6 +10,8 @@
 #include "PlanetaryMotor.h"
 #include "PlanetaryRenderer.h"
 
+#include "ShapeDraw.h"
+
 void main()
 {
 	float SCREEN_WIDTH = 1200, SCREEN_HEIGHT = 1200;
@@ -19,8 +21,6 @@ void main()
 	vec2 start = { 200, 300 },
 		end = { 900, 800 },
 		mid = { 0, 1100 };
-
-
 
 	//Transform ST1(100, 0);
 	//Transform ST2(100, 0);
@@ -101,9 +101,6 @@ void main()
 				+ sunTransform.getGlobalPosition()) / 2,
 				sfw::getDeltaTime() * 10);
 
-
-
-
 		// translation is the position of the camera ON THE SCREEN
 		// the scale describes the zoom
 		mat3 proj = translate(600, 600) * scale(2, 2);
@@ -124,6 +121,7 @@ void main()
 		moon1renderer.draw(camera, moon1);
 
 		playerRender.draw(camera, playerTransform);
+
 	}
 	sfw::termContext();
 }
