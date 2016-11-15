@@ -1,19 +1,19 @@
 #pragma once
 #include "vec3.h"
-#include "vec2.h"
 
-// m[0] == mm[0][0]
-// m[1] == mm[0][1]
-// m[2] == mm[1][0]
-// m[3] == mm[1][1]
-
+/**
+[ column 1 ][ column 2 ][ column 3 ] Layout
+[ 0][ 1][ 2][ 3][ 4][ 5][ 6][ 7][ 8]
+[00][01][02][10][11][12][20][21][22]
+[ 0 {x,y,z}][ 1 {x,y,z}][ 2 {x,y,z}] vectors
+**/
 union mat3
 {
-	float m[9];		// single dimensional array
-	float mm[3][3];	// multidimensional array
-	vec3  c[3];		// columm vectors
+	float m[9];      // single dimensional array
+	float mm[3][3];  // multidimensional array
+	vec3  c[3];      // column vectors
 
-	vec3  operator[](unsigned idx) const;
+	vec3 operator[](unsigned idx) const;
 	vec3 &operator[](unsigned idx);
 };
 
@@ -32,26 +32,38 @@ mat3 operator*(float s, const mat3 &A);
 mat3 operator*(const mat3 &A, const mat3 &B);
 vec3 operator*(const mat3 &A, const vec3 &V);
 
+
+// affine multiplication
+vec2 amul(const mat3 &A, const vec2 &V);
+
+
 float determinant(const mat3 &A);
 mat3 inverse(const mat3 &A);
 
-// In a 2D space
+
+//	We're in a 2D space
+//	matrices are 3x3
+//	X-axis, Y-axis AND translation
+//	Dual-Quaternions
+
+
 mat3 scale(float w, float h);
+//mat3 scale(const vec2 &s);
 mat3 translate(float x, float y);
-mat3 rotation(float a);
+mat3 rotate(float a);
 
-// mat2[unsigned]	: subscr
-// mat2 == mat2		: equivalence!
-// transpose(mat2)
-// mat2 + mat2		: matrix addition
-// mat2 - mat2		: matrix subtraction
-// -mat2
+// "Affine" Transformations
+// Dual-Quaternions
 
+// x-axis = cos(a) sin(a) 0
+// y-axis = -sin(a) cos(a) 0
+/*
+X   Y  T
+[ c][-s][0] How much of the vector's x and y value ends up as the final x?
+[ s][ c][0]
+[ 0][ 0][1]
+*/
 
-// mat2 * mat2		:	Matrix multiplied by matrix
-// mat2 * vec2		:	Matrix by Vector
-// mat2 * float		:	Matrix by Scalar
-// float * mat2		:	Scalar by Matrix
-
-// determinant(mat2)
-// inverse(mat2)
+/*
+1. DPS
+*/

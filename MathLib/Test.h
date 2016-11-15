@@ -29,14 +29,14 @@ float inner(const Point3D &P1, const Point3D &P2);
 float inner(float x1, float y1, float z1,
 	float x2, float y2, float z2);
 
-struct Plane { Point3D abc; float d; };
+/* Plane { Point3D abc; float d; };
 inline float point_plane_distance(const Plane &pl, const Point3D &pt)
 {
 	return (inner(pl.abc, pt) + pl.d) / sqrt(pl.abc.x * pl.abc.x
 									+ pl.abc.y * pl.abc.y
 									+ pl.abc.z * pl.abc.z);
 }
-
+*/
 inline Point3D bezier(float t,
 	const Point3D &p1,
 	const Point3D &p2,

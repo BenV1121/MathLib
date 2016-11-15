@@ -21,23 +21,36 @@ struct AABB
 	vec2 min() const; // bottom left corner
 	vec2 max() const; // top right corner
 };
+
+AABB   operator*(const mat3 &T, const AABB   & Box);
+
+
 struct Plane
 {
-	vec2 pos;
-
+	vec2 pos, dir;
 };
+
+Plane  operator*(const mat3 &T, const Plane  &   P);
+
 struct Ray   
 {
 	vec2 pos;
 
 };
+
+Ray    operator*(const mat3 &T, const Ray	 &   R);
+
 struct Hull  
 {
-	vec2 pos;
+	vec2 vertices[16];
+	vec2 normals [16];
+	unsigned int size;
 
+	Hull(const vec2 * a_vertices, unsigned a_size);
+
+	Hull();
 };
 
-AABB   operator*(const mat3 &T, const AABB   & Box);
-Plane  operator*(const mat3 &T, const Plane  &   P);
-Ray    operator*(const mat3 &T, const Ray	 &   R);
+bool   operator==(const Hull &A, const Hull &B);
+
 Hull   operator*(const mat3 &T, const Hull   &   H);

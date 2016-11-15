@@ -7,6 +7,7 @@
 #include "vec3.h"
 #include "flops.h"
 #include "mat2.h"
+#include "Shapes.h"
 
 
 int main()
@@ -27,7 +28,7 @@ int main()
 	vec2 N = normal(vec2{ 1,1 });
 	assert(N.x == N.y);
 
-	assert(magnitude(N) == 1);
+	//assert(magnitude(N) == 1);
 	assert(normal(N) == N);
 	assert((normal(vec2{ 0,1 }) == vec2{ 0,1 }));
 
@@ -67,12 +68,26 @@ int main()
 	/*
 	vec3 test
 		= m_rotate(deg2rad(-90)) * m_translate(10, 0) *
-		  m_rotate(deg2rad(45))  * m_translate(4, 0) *
+		  m_rotate(deg2rad(45))  * m_translate( 4, 0) *
 		  m_rotate(deg2rad(45))  * m_translate(-6, 0) *
-		  m_translate(6, 4)	   * vec3 { 0, 0, 1 };
+		  m_translate(6, 4)	     * vec3 { 0, 0, 1 };
 
 	assert((test == vec3{ 2 * sqrtf(2), -6 - 2 * sqrtf(2), 1 }));
 	*/
+
+	vec2 verts[] = { {0,1}, {1,1}, {1,0}, {0,0} };
+
+	Hull myHull(verts, 4);
+
+	assert((myHull.normals[0] == vec2{ 0, 1 }));
+	assert((myHull.normals[1] == vec2{ 1, 0 }));
+	assert((myHull.normals[2] == vec2{ 0,-1 }));
+	assert((myHull.normals[3] == vec2{ -1,0 }));
+
+	assert((myHull.vertices[0] == vec2{ 0, 1 }));
+	assert((myHull.vertices[1] == vec2{ 1, 1 }));
+	assert((myHull.vertices[2] == vec2{ 1, 0 }));
+	assert((myHull.vertices[3] == vec2{ 0, 0 }));
 
 	return 0;
 }

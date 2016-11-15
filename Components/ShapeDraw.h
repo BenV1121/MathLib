@@ -1,5 +1,4 @@
 #pragma once
-
 #include "sfwdraw.h"
 #include "Shapes.h"
 

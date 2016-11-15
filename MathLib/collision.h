@@ -2,28 +2,33 @@
 #include "vec2.h"
 #include "Shapes.h"
 
+#pragma once
+#include "vec2.h"
+#include "shapes.h"
+
 struct CollisionData1D
 {
-	bool  result;
-	float penentrationDepth; // how much overlap
-	float collisionNormal;   // -1 or 1
-	bool  result() const;
-	float MTV() const;				 // penentrationDepth * collisionNormal
+	float penetrationDepth; // how much overlap
+	float collisionNormal;  // -1 or 1
+
+	bool result() const;
+	float MTV()   const;
 };
 
-CollisionData1D collisionDetection1(float Amin, float Amax,
-									float Bmin, float Bmax);
+CollisionData1D collisionDetection1D(float Amin, float Amax,
+									 float Bmin, float Bmax);
 
 struct SweptCollisionData1D
 {
 	float entryTime, exitTime;
-	float collisionNormal; // -1 or 1
+	float collisionNormal;  // -1 or 1
 
-	bool result() const;
+	bool result() const; // Entry time is between 0 and 1
 };
 
 SweptCollisionData1D sweptDetection1D(float Amin, float Amax, float Avel,
 									  float Bmin, float Bmax, float Bvel);
+
 
 struct CollisionData
 {
@@ -36,6 +41,24 @@ struct CollisionData
 
 CollisionData boxCollision(const AABB &A,
 						   const AABB &B);
+
+struct CollisionDataSwept
+{
+	float entryTime, exitTime;
+	vec2 collisionNormal;
+	bool collides;
+
+	bool result() const;
+};
+
+CollisionDataSwept boxCollisionSwept(const AABB &A, const vec2 &dA,
+									 const AABB &B, const vec2 &dB);
+
+CollisionData planeBoxCollision(const Plane &P, const AABB &B);
+
+CollisionDataSwept planeBoxCollisionSwept(const Plane &P, const AABB &B, const vec2 &Bvel, const vec2 & Pvel);
+
+CollisionData HullCollision(const Hull &A, const Hull &B);
 
 /*
 	5 minutes of buffer
