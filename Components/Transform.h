@@ -21,12 +21,12 @@ public:
 
 	// Useful to access global data directly.
 	vec2 getGlobalPosition() const;
-	vec2 getGlobalRight()    const;
+	vec2 getGlobalright()    const;
 	vec2 getGlobalUp()       const;
 	float getGlobalAngle()   const;
 
 	mat3 getGlobalTransform() const;
-	mat3 getLocalTransform() const;
+	mat3 getLocalTransform()  const;
 	mat3 getWorldToLocal() const;
 
 	void debugDraw(const mat3 &T = mat3Identity()) const;

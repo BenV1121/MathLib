@@ -1,5 +1,6 @@
 #include "SpaceShip.h"
 #include "sfwdraw.h"
+#include "TractorBeam.h"
 
 SpaceShip::SpaceShip()
 {
@@ -41,4 +42,9 @@ void SpaceShip::update(const Transform &trans,
 	rigidbody.addTorque(-rigidbody.angularVelocity * breakPower * stopAction);
 
 	horzThrust = vertThrust = stopAction = 0;
+}
+
+void SpaceShip::doShoot(TractorBeam & tb)
+{
+	TractorBeam(draw);
 }

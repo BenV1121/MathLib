@@ -20,7 +20,10 @@ void Asteroid::update(float deltaTime, GameState & gs)
 
 void Asteroid::draw(const mat3 & camera)
 {
+	if(active)
+	{
 	transform.debugDraw(camera);
 	collider.DebugDraw(camera, transform);
 	rigidbody.debugDraw(camera, transform);
+	}
 }

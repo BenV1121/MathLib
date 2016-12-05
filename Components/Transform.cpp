@@ -1,6 +1,6 @@
 #include "Transform.h"
 #include "sfwdraw.h"
-#include "ShapeDraw.h"
+#include "shapedraw.h"
 
 Transform::Transform(float x, float y, float w, float h, float a)
 {
@@ -37,7 +37,8 @@ vec2 Transform::getGlobalPosition() const
 	return getGlobalTransform()[2].xy;
 }
 
-vec2 Transform::getGlobalRight() const
+// First column of the Global Transform.
+vec2 Transform::getGlobalright() const
 {
 	return getGlobalTransform()[0].xy;
 }
@@ -49,7 +50,8 @@ vec2 Transform::getGlobalUp() const
 
 float Transform::getGlobalAngle() const
 {
-	return angle(getGlobalRight());
+	//atan2f(y,x)
+	return angle(getGlobalright());
 }
 
 
@@ -64,6 +66,8 @@ mat3 Transform::getGlobalTransform() const
 		return m_parent->getGlobalTransform() * getLocalTransform();
 }
 
+
+
 mat3 Transform::getLocalTransform() const
 {
 	mat3 T = translate(m_position.x, m_position.y);
@@ -75,7 +79,10 @@ mat3 Transform::getLocalTransform() const
 
 mat3 Transform::getWorldToLocal() const
 {
-	return mat3();
+	if (m_parent)
+		return inverse(m_parent->getGlobalTransform());
+	else
+		return mat3Identity();
 }
 
 void Transform::debugDraw(const mat3 &T) const
@@ -95,5 +102,5 @@ void Transform::debugDraw(const mat3 &T) const
 	vec3 sgp = m_parent ? T * m_parent->getGlobalTransform()[2] : pos;
 	sfw::drawLine(sgp.x, sgp.y, pos.x, pos.y, BLUE);
 
-	drawCircle(L * Circle{ 0, 0, 1 }, 0x888888FF);
+	//	drawCircle(L * Circle{0, 0, 1}, 0x888888FF);
 }

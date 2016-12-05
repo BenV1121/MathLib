@@ -1,16 +1,18 @@
 #include "SpaceshipController.h"
+#include "TractorBeam.h"
 
 #include "sfwdraw.h"
 
 SpaceshipController::SpaceshipController(unsigned a_CTR_LEFT, unsigned a_CTR_RIGHT,
 	unsigned a_CTR_UP, unsigned a_CTR_DOWN,
-	unsigned a_CTR_BREAK)
+	unsigned a_CTR_BREAK, unsigned a_CTR_SHOOT)
 {
 	CTR_LEFT = a_CTR_LEFT;
 	CTR_RIGHT = a_CTR_RIGHT;
 	CTR_UP = a_CTR_UP;
 	CTR_DOWN = a_CTR_DOWN;
 	CTR_BREAK = a_CTR_BREAK;
+	CTR_SHOOT = a_CTR_SHOOT;
 }
 
 void SpaceshipController::update(SpaceShip & ship)
@@ -28,4 +30,7 @@ void SpaceshipController::update(SpaceShip & ship)
 	ship.doStop(bInput);
 	ship.doTurn(hInput);
 	ship.doThrust(vInput);
+
+	//TractorBeam tb;
+	//tb += sfw::getKey(CTR_SHOOT);
 }

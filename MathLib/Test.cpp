@@ -26,10 +26,10 @@ quad_results quad(float a, float b, float c)
 
 	return retquad;
 }
-float lerp(float start, float end, float t)
-{
-	return start + t*(end - start);
-}
+//float lerp(float start, float end, float t)
+//{
+//	return start + t*(end - start);
+//}
 
 float distance(const Point &P1, const Point &P2)
 {

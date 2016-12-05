@@ -1,12 +1,12 @@
-#include "ShapeDraw.h"
-#include "SpaceshipRenderer.h"
+#include "shapedraw.h"
+#include "sfwdraw.h"
 
 void drawCircle(const Circle & C, unsigned color)
 {
-	sfw::drawCircle(C.pos.x, C.pos.y, C.rad, 12U, WHITE);
+	sfw::drawCircle(C.pos.x, C.pos.y, C.rad, 12U, color);
 }
 
-void drawAABB(const AABB & box, unsigned color)
+void drawAABB(const AABB &box, unsigned color)
 {
 	vec2 A = vec2{ box.min().x, box.max().y };
 	vec2 B = vec2{ box.max().x, box.max().y };
@@ -36,13 +36,13 @@ void drawPlane(const Plane & P, unsigned color)
 		P.pos.x + right.x * 120, P.pos.y + right.y * 120, color);
 }
 
-void drawRay(const Ray & R, unsigned color)
-{
 
-}
-
-void drawHull(const Hull & H, unsigned color)
+void drawHull(const Hull &H, unsigned color)
 {
+	// loop through each pair of neighboring vertices
+	// and draw a line between them.
+
+	// Loop is setup the same way as the Hull constructor
 	for (int i = 0; i < H.size && i < 16; ++i)
 	{
 		sfw::drawLine(H.vertices[i].x, H.vertices[i].y,

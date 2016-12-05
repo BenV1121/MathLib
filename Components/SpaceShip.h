@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Rigidbody.h"
+#include "TractorBeam.h"
 
 class SpaceShip
 {
@@ -23,4 +24,6 @@ public:
 	void doStop(float value);
 
 	void update(const Transform &trans, Rigidbody &rigidbody);
+
+	void doShoot(TractorBeam &tb);
 };

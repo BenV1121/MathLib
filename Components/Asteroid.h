@@ -13,6 +13,8 @@ public:
 	Collider collider;
 	Rigidbody rigidbody;
 
+	bool active;
+
 	Asteroid();
 	void update(float deltaTime, GameState &gs);
 	void draw(const mat3 & camera);

@@ -121,33 +121,40 @@
     <ClCompile Include="Asteroid.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Collider.cpp" />
+    <ClCompile Include="GameOverState.cpp" />
     <ClCompile Include="GameState.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ObjectCollision.cpp" />
     <ClCompile Include="PlanetaryMotor.cpp" />
     <ClCompile Include="PlanetaryRenderer.cpp" />
     <ClCompile Include="PlayerShip.cpp" />
+    <ClCompile Include="Projectile.cpp" />
     <ClCompile Include="Rigidbody.cpp" />
     <ClCompile Include="ShapeDraw.cpp" />
     <ClCompile Include="SpaceShip.cpp" />
     <ClCompile Include="SpaceshipController.cpp" />
     <ClCompile Include="SpaceshipRenderer.cpp" />
+    <ClCompile Include="TractorBeam.cpp" />
     <ClCompile Include="Transform.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Asteroid.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Collider.h" />
+    <ClInclude Include="constdecl.h" />
+    <ClInclude Include="GameOverState.h" />
     <ClInclude Include="GameState.h" />
     <ClInclude Include="ObjectCollision.h" />
     <ClInclude Include="PlanetaryMotor.h" />
     <ClInclude Include="PlanetaryRenderer.h" />
     <ClInclude Include="PlayerShip.h" />
+    <ClInclude Include="Projectile.h" />
     <ClInclude Include="Rigidbody.h" />
     <ClInclude Include="ShapeDraw.h" />
     <ClInclude Include="SpaceShip.h" />
     <ClInclude Include="SpaceshipController.h" />
     <ClInclude Include="SpaceshipRenderer.h" />
+    <ClInclude Include="TractorBeam.h" />
     <ClInclude Include="Transform.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

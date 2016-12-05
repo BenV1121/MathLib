@@ -1,5 +1,6 @@
 #include "sfwdraw.h"
 #include "GameState.h"
+#include "GameOverState.h"
 
 #include <cstdio>
 
@@ -9,17 +10,28 @@ void main()
 	sfw::initContext(SCREEN_WIDTH, SCREEN_HEIGHT);
 
 	GameState game;
+	GameOver over; 
 
-	game.play();
+	APP_STATE state = ENTER_GAME;
 
 	while (sfw::stepContext())
 	{
 		float dt = sfw::getDeltaTime();
 
-		game.update(dt);
+		switch (state)
+		{
+		case ENTER_GAME:
+			game.play();
+		case GAME:
+			game.update(dt);
 
-		game.draw();
-
+			game.draw();
+			state = game.next();
+			break;
+		case GAMEOVER:
+			over.draw();
+			break;
+		}
 	}
 	sfw::termContext();
 }
